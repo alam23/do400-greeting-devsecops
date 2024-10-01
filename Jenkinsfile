@@ -32,7 +32,7 @@ pipeline {
     post {
         failure {
             withCredentials([usernamePassword(
-                credentialsId: 'QUAY_USER',
+                credentialsId: 'github-global',
                 usernameVariable: 'USERNAME',
                 passwordVariable: 'PASSWORD'
             )]) {
