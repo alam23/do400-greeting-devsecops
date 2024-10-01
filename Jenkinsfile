@@ -1,8 +1,7 @@
 pipeline {
     agent { label 'nodejs' }
 
-    // Set your OCP project
-    environment { APP_NAMESPACE = '...' }
+    environment { APP_NAMESPACE = 'omjoyb-devsecops' }
 
     stages{
 
@@ -12,6 +11,13 @@ pipeline {
             }
         }
 
-        // Add more stages here
+        stage('Deploy') {
+            steps {
+                sh '''
+                    oc start-build greeting-devsecops \
+                    --follow --wait -n ${APP_NAMESPACE}
+                '''
+            }
+        }
     }
 }
